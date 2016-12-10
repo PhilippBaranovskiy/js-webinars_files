@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<title>Хайпоиск</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/page.css">
+	<link rel="stylesheet" href="css/preloader.css">
+
+	<link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+
+	<div class="container head js_holder">
+		<h1 class="eight columns offset-by-two">Хайпоиск</h1>
+		<form id="search" class="search eight columns offset-by-two" action="http://jsonplaceholder.typicode.com/posts" method="get">
+			<input autofocus class="search__field" type="search" id="search-field" autocomplete="off" />
+		</form>
+		<div id="results-holder" class="row"></div>
+	</div>
+	
+	<template id="post-template">
+		<div class="post eight columns offset-by-two">
+			<h4 class="post__title"></h4>
+			<p class="post__body"></p>
+		</div>
+	</template>
+
+	<script src="js/nanoajax.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>

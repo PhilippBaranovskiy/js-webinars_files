@@ -1,0 +1,70 @@
+var APP = (function(app){
+
+	app.search = document.querySelector('#search');
+	app.searchField = app.search.querySelector('#search-field');
+	app.results = document.querySelector('#results-holder');
+
+	app.getResults = function(){
+
+		if ( APP.searchField.value === '' ) {
+			APP.results.innerHTML = '';
+			return;
+		}
+
+		var api = this.search.action;
+		
+		// var query = 'query=' + this.searchField.value;
+		var query = 'userId=1';
+
+		nanoajax.ajax({
+			url: [api, query].join('?')
+		},
+			function (code, responseText) {
+
+				if ( !code ) { return; }
+
+				try {
+					responseText = JSON.parse( responseText );
+				} catch (err) { console.error(err); }
+
+				APP.insertResults( responseText );
+			});
+	};
+
+	app.insertResults = function(data){
+		var template = document.getElementById('post-template');
+		var postHolder = document.createDocumentFragment();
+		
+		[].forEach.call(data, function(post){
+			var postDOM = template.content;
+			
+			postDOM.querySelector('.post__title').innerHTML = post.id + ' : ' + post.title;
+			postDOM.querySelector('.post__body').innerHTML = post.body;
+			
+			postDOM = document.importNode(postDOM, true);
+			postHolder.appendChild(postDOM);
+		});
+		APP.results.innerHTML = '';
+		APP.results.appendChild(postHolder);
+	};
+
+	app.search.addEventListener('submit', function(submitEvent){
+		submitEvent.preventDefault();
+		APP.getResults();
+	});
+
+	
+
+	/*  search field typing  */
+
+	app.typeTimer = 0;
+
+	app.searchField.addEventListener('keydown', function(){
+		clearTimeout( APP.typeTimer );
+	});
+	app.searchField.addEventListener('keyup', function(){
+		APP.typeTimer = setTimeout(APP.getResults, 350);
+	});
+
+	return app;
+})(APP || {});
