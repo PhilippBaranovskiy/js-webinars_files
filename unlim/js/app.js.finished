@@ -1,0 +1,89 @@
+var APP = (function(app){
+
+	app.holder = document.querySelector('.js_holder');
+	app.route = {
+		post: 'http://jsonplaceholder.typicode.com/posts'
+	};
+	app.loader = document.getElementById('loader');
+
+	app.state = function(state){
+		if ( !app.loader ) { return; }
+		switch (state) {
+			case 'loading':
+				this.loader.classList.add(state);
+				this.loading = true;
+				break;
+			default:
+				this.loader.classList.remove('loading');
+				this.loading = false;
+				break;
+		}
+	};
+
+	app.getPost = function(id) {
+		return new Promise(function(done, reject){
+			nanoajax.ajax({
+				url: APP.route.post + '/' + (id || 1) },
+				function (code, responseText) {
+
+					if ( !code ) { reject(); }
+
+					try {
+						responseText = JSON.parse( responseText );
+					} catch (err) { console.error(err); }
+
+					done( responseText );
+				});
+		});
+	};
+
+	app.getPosts = function(offset){
+		var promises = [];
+		for (var i = offset[0]; i <= offset[1]; i++) {
+			promises.push( this.getPost(i) );
+		};
+		return Promise.all( promises );
+	};
+
+	app.insertPosts = function(posts){
+		var template = document.getElementById('post-template');
+		var postHolder = document.createDocumentFragment();
+		
+		[].forEach.call(posts, function(post){
+			var postDOM = template.content;
+			
+			postDOM.querySelector('.post__title').innerHTML = post.id + ' : ' + post.title;
+			postDOM.querySelector('.post__body').innerHTML = post.body;
+			
+			postDOM = document.importNode(postDOM, true);
+			postHolder.appendChild(postDOM);
+		});
+		APP.holder.appendChild(postHolder);
+	};
+
+	app.lastLoadedPostID = 0;
+	app.loading = false;
+
+	app.loadPosts = function(){
+
+		if ( this.loading ) { return; }
+		else { this.state('loading') }
+
+		var start = this.lastLoadedPostID + 1;
+		var end = start + 5;
+
+		this.getPosts([start, end]).then(function(postData){
+			APP.insertPosts(postData);
+			APP.lastLoadedPostID += postData.length;
+			APP.state();
+		});
+	};
+
+	windowScroller.queue.add(function(){
+		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+			APP.loadPosts();
+		}
+	}, true);
+
+	return app;
+})(APP || {});
