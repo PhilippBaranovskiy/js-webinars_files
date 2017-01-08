@@ -2,7 +2,8 @@ var APP = (function(app){
 
 	app.holder = document.querySelector('.js_holder');
 	app.route = {
-		post: 'http://jsonplaceholder.typicode.com/posts'
+		post: 'http://jsonplaceholder.typicode.com/posts',
+		pic: 'http://placehold.it/350x150?text=Post+'
 	};
 	app.loader = document.getElementById('loader');
 
@@ -53,6 +54,7 @@ var APP = (function(app){
 			var postDOM = template.content;
 			
 			postDOM.querySelector('.post__title').innerHTML = post.id + ' : ' + post.title;
+			postDOM.querySelector('.post__pic').src = APP.route.pic + post.id;
 			postDOM.querySelector('.post__body').innerHTML = post.body;
 			
 			postDOM = document.importNode(postDOM, true);
