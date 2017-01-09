@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Shower Presentation Engine</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen-16x10.css">
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>Shower Presentation Engine</h1>
+		<p>Yours Truly, Famous Inc.</p>
+	</header>
+	<section class="slide" id="cover">
+		<h2>Вебинар по JS: ударная установка, бесконечная страница и мгновенный поиск</h2>
+		<h3>Филипп Барановский, академия программирования pr-of-it.ru</h3>
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#cover {
+				background: black;
+			}
+			#cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#cover h3 {
+				text-align: center;
+				color:#FFF;
+			}
+			#cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+			#cover p a {
+				color:#FFF;
+			}
+		</style>
+	</section>
+	<section class="slide">
+		<h2>Ударная установка</h2>
+		<ol>
+			
+		    <li><a href="https://github.com/rockfield/js-webinars_files/archive/master.zip">Начальная верстка</a> (ZIP архив / папка drum)</li>
+		    <li>Ресурс WebReference: <a href="https://webref.ru">webref.ru</a></li>
+		    <li>Коды клавиш: <a href="http://keycode.info/">keycode.info</a></li>
+
+		</ol>
+	</section>
+	<section class="slide">
+		<h2>Бесконечная страница</h2>
+		<ol>
+			<li><a href="https://github.com/rockfield/js-webinars_files/archive/master.zip">Начальная верстка</a> (ZIP архив / папка unlim)</li>
+		    <li>Библиотека <a href="https://github.com/rockfield/js-client-window-scroller">windowScroller</a></li>
+		    <li>Библиотека <a href="https://github.com/yanatan16/nanoajax">nanoAjax</a></li>
+		    <li>Каталог маленьких и быстрых JS библиотечек: <a href="http://microjs.com/#">microjs.com</a></li>
+		</ol>
+	</section>
+
+	<!-- <section class="slide">
+		<h2>Мгновенный поиск</h2>
+		<ol>
+			<li><a href="https://github.com/rockfield/js-webinars_files/archive/master.zip">Начальная верстка</a> (ZIP архив / папка instant-search)</li>
+		    
+		    <li>Каталог маленьких и быстрых JS библиотечек: <a href="http://microjs.com/#">microjs.com</a></li>
+		</ol>
+	</section> -->
+	<p class="badge">
+		<a href="https://github.com/shower/shower">Fork me on GitHub</a>
+	</p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"></div>
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>
