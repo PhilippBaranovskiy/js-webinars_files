@@ -1,0 +1,84 @@
+var APP = (function(app){
+
+	var s = app.settings = app.settings || {};
+	s.mark = {
+		chat: 'chat',
+		broadcast: 'broadcast',
+		hide: 'delete'
+	};
+
+	app.template = msgTemplate.content.children[0];
+
+	app.publish = function(msg){
+		APP.ws.emit( APP.settings.mark.chat, msg );
+	};
+	app.hide = function(id){
+		var msg = document.getElementById(id);
+		msg.querySelector('.text').innerHTML = '…';
+	};
+
+	app.render = function(msg, broadcast){
+
+		var id = Math.floor(Math.random()*1000000000000000000);
+
+		var li = APP.template;
+		if ( broadcast ) {
+			msg.msg = ['★',msg.msg,'★'].join(' ');
+			msg.nick = '';
+			li.classList.add('broadcast');
+			li.querySelector('.delete').disabled = true;
+		} else {
+			li.classList.remove('broadcast');
+			if ( msg.nick === APP.nick ) {
+				li.querySelector('.delete').disabled = false;
+			}
+			msg.nick += ': ';
+		}
+
+		li.id = id;
+		li.querySelector('.nick').innerHTML = document.createTextNode(msg.nick).textContent;
+		li.querySelector('.text').innerHTML = document.createTextNode(msg.msg).textContent;
+		li = document.importNode(li, true);
+		messages.appendChild(li);
+		window.scrollByPages(1);
+		li = null;
+	};
+
+	app.init = function(){
+		
+		this.ws = io();
+
+		this.ws.on(APP.settings.mark.chat, function(msg){
+			APP.render({ nick: APP.nick, msg: msg });
+		});
+		this.ws.on(APP.settings.mark.broadcast, function(msg){
+			APP.render(msg, true);
+		});
+		this.ws.on(APP.settings.mark.hide, function(id){
+			APP.hide(id.match(/\d/g).join(''));
+		});
+		
+		message.onsubmit = function(){
+			var val = this.elements.text.value;
+
+			if ( !val ) { return false; }
+			
+			APP.ws.emit( APP.settings.mark.chat, val );
+			this.reset();
+
+			return false;
+		};
+
+		messages.addEventListener('click', function(event){
+			if ( event.target.classList.contains('delete') ) {
+				APP.ws.emit( APP.settings.mark.hide, event.target.parentNode.id );
+			}
+		});
+
+		this.nick = prompt('Назови себя:');
+	};
+
+	return app;
+})(APP || {});
+
+APP.init();
