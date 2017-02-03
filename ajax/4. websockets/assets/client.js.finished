@@ -40,7 +40,7 @@ var APP = (function(app){
 		li.querySelector('.text').innerHTML = document.createTextNode(msg.msg).textContent;
 		li = document.importNode(li, true);
 		messages.appendChild(li);
-		window.scrollByPages(1);
+		document.body.scrollTop = 9999;
 		li = null;
 	};
 

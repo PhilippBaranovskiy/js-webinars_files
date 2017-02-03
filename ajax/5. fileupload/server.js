@@ -17,6 +17,13 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');
 });
 app.post('/upload', function(req, res) {
+
+	for (var id in req.files) {
+		if( req.files.hasOwnProperty(id) ) {
+			console.log(req.files[id].name + ':', req.files[id].mimetype);
+		} 
+	}
+
 	res.setHeader('Content-Type', 'application/json');
 	res.send('{ "status": "Uploaded!" }');
 });

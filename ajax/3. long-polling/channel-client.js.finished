@@ -1,5 +1,3 @@
-console.log(publish);
-
 publish.onsubmit = function() {
 	var xhr = new XMLHttpRequest();
 	
