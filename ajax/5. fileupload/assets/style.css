@@ -1,0 +1,43 @@
+img {
+	max-width: 100%;
+}
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin: 5% auto;
+	width: 90%;
+	max-width: 800px;
+}
+caption {
+	text-align: left;
+	padding: 10px 15px;
+}
+td, th {
+	text-align: left;
+	padding: 10px 15px;
+	border: 1px solid silver;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+tfoot td:first-of-type {
+	border-bottom-color: transparent;
+}
+col {
+	width: auto;
+}
+col.preview, .file__preview img {
+	width: 70px;
+}
+col.size {
+	width: 70px;
+}
+col.progress {
+	width: 120px;
+}
+
+tbody tr.empty-msg {
+	display: none;
+}
+tbody tr.empty-msg:last-of-type {
+	display: table-row;
+}

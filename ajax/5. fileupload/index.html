@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="container">
+
+	<form id="form" method="post" action="/upload">
+		<input type="file" multiple name="files"/>
+	</form>
+
+	<table>
+		<caption>File uploading order:</caption>
+		<col>
+		<col>
+		<col class="size">
+		<col class="progress">
+		<thead>
+			<tr>
+				<th>Preview</th>
+				<th>Name</th>
+				<th>Size</th>
+				<th>Progress</th>
+			</tr>
+		</thead>
+		<!-- <tfoot>
+			<tr>
+				<td colspan="2">&nbsp;</td>
+				<td>Size</td>
+				<td>Progress</td>
+			</tr>
+		</tfoot> -->
+		<tbody id="fileList">
+			<tr class="empty-msg"><td colspan="4" style="text-align: center;">No files are queued yet.</td></tr>
+		</tbody>
+	</ul>
+
+	<template id="fileItem">
+		<tr>
+			<td class="file__preview"></td>
+			<td class="file__name">adsadasds.jpeg</td>
+			<td class="file__size">134 kb</td>
+			<td class="file__progress">
+				<progress max="100" value="0"></progress>
+			</td>
+		</tr>
+	</template>
+	
+	<!-- Vendor's libs -->
+		<script src="filesize.js"></script>
+	
+	<!-- APP's files -->
+		<script src="uploader.js"></script>
+		<script src="notifier.js"></script>
+		<script src="upload-client.js"></script>
+</body>
+</html>
