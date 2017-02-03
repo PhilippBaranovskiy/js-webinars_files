@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="container">
+
+	<form id="message">
+		<input autocomplete="off" type="text" autofocus name="text"/>
+		<button>></button>
+	</form>
+
+	<ul id="messages"></ul>
+
+	<template id="msgTemplate">
+		<li class="msg">
+			<span class="nick"></span>
+			<span class="text"></span>
+			<button class="delete">x</button>
+		</li>
+	</template>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="client.js"></script>
+</body>
+</html>
