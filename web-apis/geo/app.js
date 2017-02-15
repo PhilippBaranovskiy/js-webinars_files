@@ -45,7 +45,7 @@ var APP = (function(app){
 	app.init = function(){
 
 		var me;
-		var requestedUri = uQuery('uri');
+		var requestedUri = uQuery('uri'); // get a param value from url, ?get=value&
 
 		if ( requestedUri && requestedUri.indexOf('geo:') !== -1 ) {
 			me = new Promise(function(done, reject){
