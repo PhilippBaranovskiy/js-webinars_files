@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8">
+	<title>Your page title here :)</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/loader.css">
+
+	<link rel="icon" type="image/png" href="images/favicon.png">
+
+	<style>
+		#app {
+			position: relative;
+			margin-top: 25%;
+			min-height: 200px;
+		}
+		li {
+			position: relative;
+		}
+		li > .bar {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			height: 100%;
+			background: rgba(0, 255, 0, .2);
+			left: 0;
+			z-index: -1;
+			width: 0%;
+			transition: width .8s;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="one-half column" id="app">
+				<i id="loader"><img src="images/loader.svg"></i>
+				<h1>Ближайшие города:</h1>
+				<ol id="_citiesHolder"></ol>
+			</div>
+		</div>
+	</div>
+
+	<script id="_cities" type="text/x-handlebars-template">
+		{{#each cities}}
+		<li>
+			<i class="bar" id="{{id}}"></i>
+			<a href="geo:{{lookup coords 0}},{{lookup coords 1}}">{{name}}</a> <sup>{{distance}} km</sup>
+		</li>
+		{{/each}}
+	</script>
+
+	<script src="handlebars.js"></script>
+	<script src="underscore-min.js"></script>
+	<script src="distance.js"></script>
+	<script src="micro-query.min.js"></script>
+	
+	<script src="app.animate-bars.js"></script>
+	<script src="app.load-coords.js"></script>
+	<script src="app.render.js"></script>
+	<script src="app.geohandler.js"></script>
+	<script src="app.js" onload="APP.init();"></script>
+
+</body>
+</html>
