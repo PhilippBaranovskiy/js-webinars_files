@@ -10,7 +10,7 @@ var APP = (function(app){
 		_citiesHolder.innerHTML = html;
 
 		setTimeout(function(){
-			APP.animateBars( cities );
+			// APP.animateBars( cities );
 		}, 100);
 	};
 

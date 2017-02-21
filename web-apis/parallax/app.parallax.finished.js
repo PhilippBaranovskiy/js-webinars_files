@@ -8,10 +8,12 @@ var APP = (function(app){
 		$('video').css('bottom', (scrolled*0.5)+'px');
 	};
 	
-	$(window).scroll(function(e){
-		APP.parallax.run();
-	});
-	app.parallax.run();
+	app.parallax.init = function(){
+		$(window).scroll(function(e){
+			APP.parallax.run();
+		});
+		this.run();
+	};
 
 	return app;
 })(APP || {});

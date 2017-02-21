@@ -6,7 +6,5 @@ var APP = (function(app){
 		$('video')[0].play();
 	};
 
-	app.video.init();
-
 	return app;
 })(APP || {});
