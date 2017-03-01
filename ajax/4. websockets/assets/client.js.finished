@@ -48,13 +48,13 @@ var APP = (function(app){
 		
 		this.ws = io();
 
-		this.ws.on(APP.settings.mark.chat, function(msg){
+		this.ws.on(this.settings.mark.chat, function(msg){
 			APP.render({ nick: APP.nick, msg: msg });
 		});
-		this.ws.on(APP.settings.mark.broadcast, function(msg){
+		this.ws.on(this.settings.mark.broadcast, function(msg){
 			APP.render(msg, true);
 		});
-		this.ws.on(APP.settings.mark.hide, function(id){
+		this.ws.on(this.settings.mark.hide, function(id){
 			APP.hide(id.match(/\d/g).join(''));
 		});
 		
