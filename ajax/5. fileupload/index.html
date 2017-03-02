@@ -25,13 +25,15 @@
 				<th>Progress</th>
 			</tr>
 		</thead>
-		<!-- <tfoot>
+		<tfoot>
 			<tr>
 				<td colspan="2">&nbsp;</td>
-				<td>Size</td>
-				<td>Progress</td>
+				<td id="totalSize" class="file__size">0 kb</td>
+				<td class="file__progress">
+					<progress id="totalProgress" max="100" value="0"></progress>
+				</td>
 			</tr>
-		</tfoot> -->
+		</tfoot>
 		<tbody id="fileList">
 			<tr class="empty-msg"><td colspan="4" style="text-align: center;">No files are queued yet.</td></tr>
 		</tbody>

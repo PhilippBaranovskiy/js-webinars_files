@@ -13,6 +13,12 @@ var APP = (function(app){
 		var request = new XMLHttpRequest();
 		request.open('POST', APP.form.action);
 
+		request.onloadstart = function () {
+			APP.notifier.totalFiles += 1;
+			APP.notifier.totalSize += instance.file.size;
+			APP.notifier.setTotalSize();
+		};
+
 		request.onprogress = function(pe) {
 			if (pe.lengthComputable) {
 				APP.notifier.update(instance.id, pe.loaded);
