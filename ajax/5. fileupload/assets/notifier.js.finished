@@ -1,11 +1,27 @@
 var APP = (function(app){
 
 	var ntf = app.notifier = app.notifier || {};
+	// Total Counters
+	ntf.totalFiles = ntf.totalFiles || 0;
+	ntf.totalSize = ntf.totalSize || 0;
+	ntf.totalProgress = ntf.totalProgress || [];
 
 	ntf.update = function(id, amount){
 		var target = document.getElementById(id);
 		if ( !target ) { return; }
 		target.value = amount;
+
+		this.totalProgress[id] = amount;
+		var currentProgress = 0;
+		for (var id in this.totalProgress) {
+			currentProgress += this.totalProgress[id];
+		}
+		document.getElementById('totalProgress').value = currentProgress/ntf.totalFiles;
+	};
+
+	ntf.setTotalSize = function () {
+		document.getElementById( 'totalSize' ).innerHTML =
+			document.createTextNode( filesize( this.totalSize ) ).textContent;	
 	};
 
 	return app;
